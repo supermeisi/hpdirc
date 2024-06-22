@@ -21,12 +21,14 @@ RUN mkdir -p software/root/
 RUN cd software/root/
 
 # Downloading ROOT source code
-RUN wget https://root.cern/download/root_v6.32.02.source.tar.gz
+RUN wget https://root.cern/download/root_v6.30.02.source.tar.gz
 
 # Unpacking ROOT
-RUN tar xzfv root_v6.32.02.source.tar.gz
+RUN tar xzfv root_v6.30.02.source.tar.gz
 
-# Configuring ROOT
-RUN mkdir -p root_v6.32.02-build
-RUN cd root_v6.32.02-build
-RUN cmake ../root_v6.32.02/ && make
+# Making and installing ROOT
+RUN mkdir -p root_v6.30.02-build
+RUN cd root_v6.30.02-build
+RUN cmake -DCMAKE_INSTALL_PREFIX=../root_v6.30.0-install/ ../root-6.30.02/
+RUN make -j$(nproc) 
+RUN make install
