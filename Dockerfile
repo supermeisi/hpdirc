@@ -81,12 +81,24 @@ RUN make -j$(nproc)
 RUN make install
 
 # Setting environment variables for Geant4
-ENV G4INSTALL=/home/dockeruser/software/geant4/geant4.11.1-install
+ENV G4INSTALL=/home/dockeruser/software/geant4/geant4-v11.1.1-install
 ENV G4DATA=$G4INSTALL/share/Geant4-11.1.0/data
 ENV PATH=$G4INSTALL/bin:$PATH
-ENV LD_LIBRARY_PATH=$G4INSTALL/lib64:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$G4INSTALL/lib:$LD_LIBRARY_PATH
 ENV G4WORKDIR=$HOME/geant4_workdir
 ENV G4INCLUDE=$G4INSTALL/include
-
+    
 # Return to the original work directory
 WORKDIR /home/dockeruser
+
+# Check out prttools
+RUN git clone https://github.com/rdom/prttools.git
+
+# Check out eicdirc
+RUN git clone https://github.com/rdom/eicdirc.git
+
+# Compile eicdirc
+WORKDIR /home/dockeruser/eicdirc
+RUN mkdir -p build
+WORKDIR /home/dockeruser/eicdirc/build
+RUN cmake .. && make -j$(nproc)
