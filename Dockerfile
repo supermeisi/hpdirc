@@ -31,6 +31,9 @@ RUN apt update && apt install -y \
     libxmu-dev \
     libxi-dev
 
+# Installint additional programs
+RUN apt install -y emacs
+
 # Create a non-root user
 RUN useradd -m dockeruser && echo "dockeruser:dockeruser" | chpasswd && adduser dockeruser sudo
 
