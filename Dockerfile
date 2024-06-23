@@ -1,3 +1,7 @@
+# Author: Mustafa Schmidt
+# E-Mail: muschmidt@uni-wuppertal.de
+# Created: 22. June 2024
+
 # Download base image ubuntu 22.04
 FROM ubuntu:22.04
 
