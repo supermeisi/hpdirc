@@ -54,7 +54,7 @@ RUN tar xzfv root_v6.32.02.source.tar.gz
 # Making and installing ROOT
 RUN mkdir -p root_v6.32.02-build
 WORKDIR /home/dockeruser/software/root/root_v6.32.02-build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/root/root_v6.32.02-install/ /home/dockeruser/software/root/root-6.32.02/
+RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/root/root_v6.32.02-install/ -Dxrootd=off -Dbuiltin_xroot=off /home/dockeruser/software/root/root-6.32.02/
 RUN make -j$(nproc)
 RUN make install
 
