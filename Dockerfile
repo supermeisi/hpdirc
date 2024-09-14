@@ -46,7 +46,7 @@ RUN mkdir -p /home/dockeruser/software/root/
 WORKDIR /home/dockeruser/software/root/
 
 # Downloading ROOT source code
-RUN wget https://root.cern/download/root_v6.30.02.source.tar.gz
+RUN wget https://root.cern/download/root_v6.32.04.source.tar.gz
 
 # Unpacking ROOT
 RUN tar xzfv root_v6.32.04.source.tar.gz
