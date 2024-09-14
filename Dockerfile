@@ -46,23 +46,24 @@ RUN mkdir -p /home/dockeruser/software/root/
 WORKDIR /home/dockeruser/software/root/
 
 # Downloading ROOT source code
-RUN wget https://root.cern/download/root_v6.32.02.source.tar.gz
+RUN wget https://root.cern/download/root_v6.30.02.source.tar.gz
 
 # Unpacking ROOT
-RUN tar xzfv root_v6.32.02.source.tar.gz
+RUN tar xzfv root_v6.32.04.source.tar.gz
 
 # Making and installing ROOT
-RUN mkdir -p root_v6.32.02-build
-WORKDIR /home/dockeruser/software/root/root_v6.32.02-build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/root/root_v6.32.02-install/ -Dxrootd=off -Dbuiltin_xroot=off /home/dockeruser/software/root/root-6.32.02/
+RUN mkdir -p root_v6.32.04-build
+WORKDIR /home/dockeruser/software/root/root_v6.32.04-build
+#RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/root/root_v6.32.04-install/ -Dxrootd=off -Dbuiltin_xroot=off /home/dockeruser/software/root/root-6.32.04/
+RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/root/root_v6.32.04-install/ /home/dockeruser/software/root/root-6.32.04/
 RUN make -j$(nproc)
 RUN make install
 
 # Setting environment variables for ROOT
-ENV ROOTSYS=/home/dockeruser/software/root/root_v6.32.02-install
+ENV ROOTSYS=/home/dockeruser/software/root/root_v6.32.04-install
 ENV PATH=$ROOTSYS/bin:$PATH
-ENV LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
-ENV PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
+ENV LD_LIBRARY_PATH=$ROOTSYS/lib
+ENV PYTHONPATH=$ROOTSYS/lib
 
 # Return to the original work directory
 WORKDIR /home/dockeruser
@@ -92,7 +93,7 @@ ENV G4INSTALL=/home/dockeruser/software/geant4/geant4-v11.1.1-install
 ENV G4DATA=$G4INSTALL/share/Geant4-11.1.0/data
 ENV PATH=$G4INSTALL/bin:$PATH
 ENV LD_LIBRARY_PATH=$G4INSTALL/lib:$LD_LIBRARY_PATH
-ENV G4WORKDIR=$HOME/geant4_workdir
+ENV G4WORKDIR=/home/dockeruser/geant4_workdir
 ENV G4INCLUDE=$G4INSTALL/include
     
 # Return to the original work directory
