@@ -19,7 +19,7 @@ RUN apt install -y git wget sudo
 RUN apt install -y binutils cmake dpkg-dev g++ gcc libssl-dev git libx11-dev libxext-dev libxft-dev libxpm-dev python3 libtbb-dev
 
 # Installing optional dependencies
-RUN apt install -y gfortran libpcre3-dev libglu1-mesa-dev libglew-dev libftgl-dev libfftw3-dev libcfitsio-dev libgraphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python3-dev python3-numpy libxml2-dev libkrb5-dev libgsl-dev qtwebengine5-dev nlohmann-json3-dev libmysqlclient-dev libpython3.10-dev
+RUN apt install -y gfortran libpcre3-dev libglu1-mesa-dev libglew-dev libftgl-dev libfftw3-dev libcfitsio-dev libgraphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python3-dev python3-numpy libxml2-dev libkrb5-dev libgsl-dev qtwebengine5-dev nlohmann-json3-dev libmysqlclient-dev libpython3-dev
 
 # Installing Geant4 dependencies
 RUN apt update && apt install -y \
