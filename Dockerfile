@@ -73,24 +73,24 @@ RUN mkdir -p /home/dockeruser/software/geant4/
 WORKDIR /home/dockeruser/software/geant4/
 
 # Downloading Geant4 source code
-RUN wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.1/geant4-v11.1.1.tar.gz
+RUN wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.2.2/geant4-v11.2.2.tar.gz
 
 # Unpacking Geant4
-RUN tar -xzf geant4-v11.1.1.tar.gz
+RUN tar -xzf geant4-v11.2.2.tar.gz
 
 # Making and installing Geant4
-RUN mkdir -p geant4-v11.1.1-build
-WORKDIR /home/dockeruser/software/geant4/geant4-v11.1.1-build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/geant4/geant4-v11.1.1-install \
+RUN mkdir -p geant4-v11.2.2-build
+WORKDIR /home/dockeruser/software/geant4/geant4-v11.2.2-build
+RUN cmake -DCMAKE_INSTALL_PREFIX=/home/dockeruser/software/geant4/geant4-v11.2.2-install \
           -DGEANT4_USE_QT=ON \
           -DGEANT4_INSTALL_DATA=ON \
-          /home/dockeruser/software/geant4/geant4-v11.1.1
+          /home/dockeruser/software/geant4/geant4-v11.2.2
 RUN make -j$(nproc)
 RUN make install
 
 # Setting environment variables for Geant4
-ENV G4INSTALL=/home/dockeruser/software/geant4/geant4-v11.1.1-install
-ENV G4DATA=$G4INSTALL/share/Geant4-11.1.0/data
+ENV G4INSTALL=/home/dockeruser/software/geant4/geant4-v11.2.2-install
+ENV G4DATA=$G4INSTALL/share/Geant4-11.2.2/data
 ENV PATH=$G4INSTALL/bin:$PATH
 ENV LD_LIBRARY_PATH=$G4INSTALL/lib:$LD_LIBRARY_PATH
 ENV G4WORKDIR=/home/dockeruser/geant4_workdir
