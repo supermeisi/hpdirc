@@ -10,7 +10,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 # Update Ubuntu Software repository
-RUN apt update && apt upgrade
+RUN apt update
+RUN apt upgrade -y
 
 # Installing system requirements
 RUN apt install -y git wget sudo
